@@ -27,7 +27,7 @@ public class Student{
 	public void setPreviousNode(Student prev) { this.prev_node = prev; }
 	
 	public String toString(){
-		return this.name + "\n Major: " + this.major + "\n Student ID: " 
+		return this.name + " / Major: " + this.major + " / Student ID: " 
 	+ this.id;
 	}
 
