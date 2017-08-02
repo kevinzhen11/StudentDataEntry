@@ -17,18 +17,27 @@ public class DoublyLinkedList {
 	public void insertNode(Student student){
 		Student prev_node = null;
 		Student curr_node = this.first_node;
-	
+
 		while(curr_node != null && student.compareTo(curr_node) >= 0){
 			prev_node = curr_node;
 			curr_node = curr_node.getNextNode();
 		}
 		if(prev_node == null){
 			this.first_node = student;
+			this.first_node.setNextNode(curr_node);
+			if(curr_node != null) {
+				curr_node.setPreviousNode(this.first_node);
+			}
 		}
 		else{
-			prev_node.setNextNode(student);		
+			prev_node.setNextNode(student);	
+			student.setPreviousNode(prev_node);
+			student.setNextNode(curr_node);
+			if(curr_node != null){
+				curr_node.setPreviousNode(student);
+			}
 		}
-		student.setNextNode(curr_node);
+		
 		
 		this.count += 1;
 	}
@@ -56,13 +65,18 @@ public class DoublyLinkedList {
 			if(curr_node.getName().toLowerCase().equals(name.toLowerCase())){
 				next_node = curr_node.getNextNode();
 				prev_node = curr_node.getPreviousNode();
-				if(prev_node != null) next_node.setPreviousNode(prev_node);
-				else curr_node = next_node;
-				if(next_node == null) prev_node.setNextNode(null);
-				else prev_node.setNextNode(curr_node.getNextNode());
-				/*
-				if(next_node != null) prev_node.setNextNode(next_node);
-				*/
+				if(prev_node != null) {
+					next_node.setPreviousNode(prev_node);	
+				}
+				else {
+					curr_node = next_node;
+				}
+				if(next_node == null) {
+					prev_node.setNextNode(null);
+				}
+				else {
+					prev_node.setNextNode(next_node);
+				}
 				isFound = true;
 				this.count -= 1;
 				break;
@@ -85,7 +99,12 @@ public class DoublyLinkedList {
 			str += count;
 			str += "-------\n";
 			str += curr_node.toString();
-			str += "\n";
+			if(curr_node.getPreviousNode() != null){
+				str += "\nPREVIOUS NODE: " + curr_node.getPreviousNode().getName();
+			}
+			if(curr_node.getNextNode() != null){
+				str += "\nNEXT NODE: " + curr_node.getNextNode().getName() + "\n";
+			}
 			curr_node = curr_node.getNextNode();
 			count += 1;
 		}
