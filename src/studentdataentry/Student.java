@@ -1,6 +1,6 @@
 package studentdataentry;
 
-public class Student {
+public class Student{
 	private String name, major, id;
 	private Student next_node, prev_node;
 	
@@ -27,7 +27,17 @@ public class Student {
 	public void setPreviousNode(Student prev) { this.prev_node = prev; }
 	
 	public String toString(){
-		return this.name + "\n Major: " + this.major + "\n Student ID: " + this.id;
+		return this.name + "\n Major: " + this.major + "\n Student ID: " 
+	+ this.id;
+	}
+
+	public int compareTo(Student student){
+		String str1 = this.name.toLowerCase();
+		String str2 = student.getName().toLowerCase();
+		int res = str1.compareTo(str2);
+		if(res < 0) return -1;
+		if(res > 0) return 1;
+		return 0;
 	}
 	
 }
