@@ -57,7 +57,7 @@ public class DoublyLinkedList {
 		return final_node;
 	}
 	
-	public void deleteNode(String name){
+	public Student deleteNode(String name){
 		Student curr_node = this.first_node;
 		Student next_node, prev_node;
 		boolean isFound = false;
@@ -84,10 +84,7 @@ public class DoublyLinkedList {
 			curr_node = curr_node.getNextNode();
 		}
 		
-		if(isFound) System.out.println("LAST NAME " + name + " DELETED");
-		else System.out.println("LAST NAME NOT FOUND. DELETION FAILED");
-		
-		return;
+		return curr_node;
 	}
 	
 	public String toString(){
@@ -95,16 +92,18 @@ public class DoublyLinkedList {
 		int count = 1;
 		Student curr_node = this.first_node;
 		while(curr_node != null){
-			str += "-------";
-			str += count;
-			str += "-------\n";
+			// [ George / Computer Science / 01 ] -- [ ]
+			str += "[ ";
 			str += curr_node.toString();
+			str += " ] -- \n";
+			/*
 			if(curr_node.getPreviousNode() != null){
 				str += "\nPREVIOUS NODE: " + curr_node.getPreviousNode().getName();
 			}
 			if(curr_node.getNextNode() != null){
-				str += "\nNEXT NODE: " + curr_node.getNextNode().getName() + "\n";
+				str += "\nNEXT NODE: " + curr_node.getNextNode().getName();
 			}
+			*/
 			curr_node = curr_node.getNextNode();
 			count += 1;
 		}
